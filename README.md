@@ -54,6 +54,27 @@ helm upgrade --install \
      jx-git-operator --create-namespace jxgo jx3/jx-git-operator
 ```
 
+#### Installing in a different namespace
+
+To install in a different namespace:
+
+1. You need to change `ClusterRoles` to `Roles` in `versionStream/git-operator` of Jenkins X installation repository (boot repository) first.
+2. Use `rbac.cluster=false`
+3. Switch service account name to a namespaced one
+4. Enforce namespace via Helm values like `env.NAMESPACE`
+5. Change Helm release name with `--name`
+
+**Using jx admin**
+
+```bash
+jx admin operator --username ... --token ... --setup "git config --global http.sslverify false" --url ... \
+    -n jx-mynamespace \
+    --name jx-mynamespace \
+    --set rbac.cluster=false \
+    --set serviceAccount.name=jx-git-mynamespace \
+    --set env.NAMESPACE=jx-mynamespace
+```
+
 ### Viewing the logs
       
 

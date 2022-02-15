@@ -38,6 +38,24 @@ env:
   # how frequently to poll git
   POLL_DURATION: "20s"
 
+  # the namespace polled for `Secret` resources
+  #NAMESPACE: "jx-custom-namespace"
+
+  # the branch to poll. If not specified defaults to the default branch from the clone
+  #BRANCH: main
+
+  # disable the applying of resources in a git repository at `.jx/git-operator/resources/*.yaml`. Helpful if switched from ClusterRoles to Roles.
+  #NO_RESOURCE_APPLY: true
+
+  # name of the git binary; defaults to `git`
+  #GIT_BINARY: git
+
+  # disable the polling loop so that a single poll is performed only
+  #NO_LOOP: true
+
+  # the work directory. If not specified a temporary directory is created on startup.
+  #WORK_DIR: ...
+
 # define environment variables from here as a map of key: value
 envFrom:
 - secretRef:
